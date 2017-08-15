@@ -1,3 +1,3 @@
 *.out
-.vscode/*
-*.gitignore
+.vscode/launch.json
+.gitignore
