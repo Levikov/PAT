@@ -5,6 +5,7 @@
 
 inline bool isNum(int num)
 {
+    if(num==2)return true;
     for(int i=2;i<sqrt(num)+1;i++)
     {
         if(num%i==0)
@@ -17,9 +18,9 @@ inline bool isNum(int num)
 
 int getNum(int *num,const int M,const int N)
 {
-    int cnt=1,i=2,cnt2=0;
+    int cnt=0,i=2,cnt2=0;
     int *p= num;
-    while(cnt<=N)
+    while(cnt<N)
     {
         if(isNum(i))
         {
@@ -41,7 +42,11 @@ void print(int *num,int N)
 {
     for(int i=0;i<N;i++)
     {
+        if(i!=N-1)
         (i%10==9)?(printf("%d\n",num[i])):(printf("%d ",num[i]));
+        else
+        printf("%d",num[i]);
+
     }
 }
 int main()
