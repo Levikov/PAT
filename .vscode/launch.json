@@ -5,7 +5,6 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceRoot}/a.out",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceRoot}",
@@ -13,9 +12,11 @@
             "externalConsole": true,
             "MIMode": "gdb",
             "windows":{
+                "program": "${workspaceRoot}/a.exe",
                 "miDebuggerPath": "C:\\MinGW\\bin\\gdb.exe"
             },
             "linux":{
+                "program": "${workspaceRoot}/a.out",
                 "miDebuggerPath": "/usr/bin/gdb"
             },
             "setupCommands": [
