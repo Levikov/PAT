@@ -9,7 +9,6 @@ struct linklist
     int data=0;
     int next=0;
     node *Next=nullptr;
-    node *Prev=nullptr;
 };
 
 int depth(node* h)
@@ -61,21 +60,31 @@ node* findK(node *head, int N)
     return p;
 }
 
-node* reverse(node* before,node *last)
+node* reverse(node* h,int N,int K)
 {
-    node *after = last->Next;
-    node *p = last;
-    while(p->Prev!=before)
+    const int seg = N/K*K;
+    node *before,*first,*last,*after,*prev2,*prev,*curr=h;
+    int i=0;
+    while(i<=seg)
     {
-        p=p->Prev;
-        swap(p->Next);
-    }
-    p->Prev = p->Next;
-    p->Next = after;
-    last->Prev = before;
-    while(p->Prev!=nullptr)
-    {
-        p=p->Prev;
+        if(i%K==0)
+        {
+            before = curr;
+
+        }
+        else if(i%K==1)
+        {
+            first = curr;
+        }
+        else if(i%K==K-1)
+        {
+            
+        }
+        else
+        {
+            p->Next =prev;
+        }
+        
     }
     return p;
 }
@@ -85,13 +94,13 @@ int main()
     int addr0,addr,N,K,data,next;
     scanf("%d %d %d",&addr0,&N,&K);
     node* head = (node*)malloc(sizeof(node)*N);
+    node const *dumy = (node *)malloc(sizeof(node));
     for(int i=0;i<N;i++)
     {
         scanf("%d %d %d",&addr,&data,&next);
         (head+i)->addr = addr;
         (head+i)->data = data;
         (head+i)->next = next;
-        (head+i)->Prev = nullptr;
         (head+i)->Next = nullptr;
     }
     node* h = find(head,addr0,N);
@@ -100,15 +109,12 @@ int main()
     {
         p->Next = find(head,p->next,N);
         if(p->Next==nullptr)break;
-        p->Next->Prev = p;
         p = p->Next;
     }
 
     N = depth(h);
-    for(int i=0;i<N/K;i++)
-    {
-        h = reverse(findK(h,i*K-1),findK(h,(i+1)*K-1));
-    }
+    dumy->Next = h;
+    h = reverse(h,N,K);
     p=h;
     while(p->Next)
     {
