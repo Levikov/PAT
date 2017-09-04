@@ -16,7 +16,7 @@ int main()
     for(int i=0;i<N;i++)
     {
         if(N-i<max)break;
-        for(int j=i;j<N;j++)
+        for(int j=i+max-1;j<N;j++)
         {
             if(a[j]<=a[i]*p)
             {
